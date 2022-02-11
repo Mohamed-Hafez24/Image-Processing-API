@@ -2,12 +2,13 @@
 
 
 ## Introduction
-This document is a specification of how you can use image processing API. You can use our API to resize images with specififc width and height. Image is resized when you reach the endpoint for the first time and store the image so when you request the same size again will load the stored image.
-* Note: this is the first version, So it has a limited features.
-        Also, you can use images from our library, only 5 images available now (santamonica.jpg - palmtunnel.jpg - icelandwaterfall.jpg - fjord.jpg - encenadaport.jpg) 
-
+This document is a specification of how you can use image processing API. You can use our API to resize images with specific widths and heights. Image is resized when you reach the endpoint for the first time and store the image so when you request the same size again will load the stored image.
+* Note: this is the first version, So it has limited features.
+        Also, you can use images from our library, only 5 images are available now (santamonica.jpg - palmtunnel.jpg - icelandwaterfall.jpg - fjord.jpg - encenadaport.jpg).
 ________________________________________________________________________________________________________________________________
-________________________________________________ API Documentation _____________________________________________________________
+<p align="center">
+    _________________________________ API Documentation _________________________________
+</p> 
 ________________________________________________________________________________________________________________________________
 
 ### Anatomy of an endpoint
@@ -37,7 +38,9 @@ ________________________________________________________________________________
 When an error occurs the user will get a text message shown in the browser whith the reason of the error.
 
 __________________________________________________________________________________________________________________________________
-________________________________________________ Running the Project _____________________________________________________________
+<p align="center">
+    _________________________________ Running the Project _________________________________
+</p> 
 __________________________________________________________________________________________________________________________________
 
 ### Setup the project locally 
@@ -45,27 +48,28 @@ ________________________________________________________________________________
 2. Get inside the project directory using `cd` command.
 3. install all dependencies using `npm install command`.
 
-    #### Running the project locally in development mode
-```
+   #### Running the project locally in development mode
+        ```
         npm run start
-```
-    #### Running the project locally in production mode
-```
+        ```
+   #### Running the project locally in production mode
+        ```
         npm run build
         node dist/index.js
-```
+        ```
 #### the project will run on port 3000 | `localhost:3000`
 
+
 ### Testing
-I am using Unittesting with jasmin in this project so to run tests you need to run this command :
-```
-    npm run test.
-```
-### code Formatting 
+I am using unit testing with jasmin in this project so to run tests you need to run this command :
+        ```
+            npm run test.
+        ```
+### Code Formatting 
 I am using Prettier and ESlint to format the code and reduce errors. To run Prettier and Lint scripts use this command :
-```
-    npm run prettier
-    npm run lint
-```
+        ```
+            npm run prettier
+            npm run lint
+        ```
 
 
