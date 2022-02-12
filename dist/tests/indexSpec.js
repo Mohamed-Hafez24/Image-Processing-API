@@ -46,7 +46,7 @@ var sharp_1 = __importDefault(require("../utilities/sharp"));
 // test endpoint
 var request = (0, supertest_1.default)(index_1.default);
 describe('1- Test Endpoint Response', function () {
-    it('get the images endpoint /api', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('expect response status to be 200 for the get endpoint /api', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -58,7 +58,7 @@ describe('1- Test Endpoint Response', function () {
             }
         });
     }); });
-    it('get the images endpoint api/images/resize', function () { return __awaiter(void 0, void 0, void 0, function () {
+    it('expect response status to be 200 for the get endpoint api/images?filename=encenadaport&width=500&height=100', function () { return __awaiter(void 0, void 0, void 0, function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -70,7 +70,7 @@ describe('1- Test Endpoint Response', function () {
             }
         });
     }); });
-    it('expect endpoint api/images/resize" responds with image/jpeg', function () {
+    it('expect endpoint get api/images?filename=encenadaport&width=500&height=100 responds with image/jpeg', function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -111,46 +111,28 @@ describe('1- Test Endpoint Response', function () {
     }); });
 });
 describe('2- Test utilities functions ', function () {
-    it('expect checkFileExist functin to return false with file name img_100x3030.jpg', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var _a;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _a = expect;
-                    return [4 /*yield*/, (0, file_checker_1.default)('img_100x200.jpg', 'thumb')];
-                case 1:
-                    _a.apply(void 0, [_b.sent()]).toBeFalse();
-                    return [2 /*return*/];
-            }
-        });
-    }); });
-    it("expect checkFileExist functin to return true with file name icelandwaterfall.jpg doesn't exist in thumb folder", function () { return __awaiter(void 0, void 0, void 0, function () {
-        var _a;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _a = expect;
-                    return [4 /*yield*/, (0, file_checker_1.default)('icelandwaterfall.jpg', 'thumb')];
-                case 1:
-                    _a.apply(void 0, [_b.sent()]).not.toBe(true);
-                    return [2 /*return*/];
-            }
-        });
-    }); });
-    it('expect checkFileExist functin to return true with file name icelandwaterfall.jpg exist in images folder', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var _a;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _a = expect;
-                    return [4 /*yield*/, (0, file_checker_1.default)('icelandwaterfall.jpg', 'images')];
-                case 1:
-                    _a.apply(void 0, [_b.sent()]).toBe(true);
-                    return [2 /*return*/];
-            }
-        });
-    }); });
+    it('expect checkFileExist functin to return false with file name img_100x3030.jpg', function () {
+        expect((0, file_checker_1.default)('img_100x200.jpg', 'thumb')).toBeFalse();
+    });
+    it("expect checkFileExist functin to return true with file name icelandwaterfall.jpg doesn't exist in thumb folder", function () {
+        expect((0, file_checker_1.default)('icelandwaterfall.jpg', 'thumb')).not.toBe(true);
+    });
+    it('expect checkFileExist functin to return true with file name icelandwaterfall.jpg exist in images folder', function () {
+        expect((0, file_checker_1.default)('icelandwaterfall.jpg', 'images')).toBe(true);
+    });
     it('expect resizeImage functin to be defined', function () {
         expect(sharp_1.default).toBeDefined();
     });
+    it("expect resizeImage functin to return the 'assets/thumb/icelandwaterfall_500x300.jpg' path of icelandwaterfall.jpg with width=500 and height=300", function () { return __awaiter(void 0, void 0, void 0, function () {
+        var resizeImageResult;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, (0, sharp_1.default)('icelandwaterfall', 500, 300)];
+                case 1:
+                    resizeImageResult = _a.sent();
+                    expect(resizeImageResult).toEqual('assets/thumb/icelandwaterfall_500x300.jpg');
+                    return [2 /*return*/];
+            }
+        });
+    }); });
 });

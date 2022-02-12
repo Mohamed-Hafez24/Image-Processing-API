@@ -47,49 +47,49 @@ var sharp_1 = __importDefault(require("../../utilities/sharp"));
 var images = express_1.default.Router();
 // set the images endpoint
 images.get('/', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var fileName, w, h, width, height, thumbfileName, err_1;
+    var fileName, w, h, width, height, thumbFileName, thumbFilePath, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 7, , 8]);
+                _a.trys.push([0, 8, , 9]);
                 fileName = req.query.filename;
                 w = req.query.width;
                 h = req.query.height;
                 width = parseInt(w);
                 height = parseInt(h);
-                thumbfileName = "".concat(fileName, "_").concat(width, "x").concat(height, ".jpg");
-                return [4 /*yield*/, (0, file_checker_1.default)("".concat(fileName, ".jpg"), 'images')];
-            case 1:
-                if (!!(_a.sent())) return [3 /*break*/, 2];
+                thumbFileName = "".concat(fileName, "_").concat(width, "x").concat(height, ".jpg");
+                thumbFilePath = void 0;
+                if (!!(0, file_checker_1.default)("".concat(fileName, ".jpg"), 'images')) return [3 /*break*/, 1];
                 res.send('Please, Enter a valid filename');
-                return [3 /*break*/, 6];
-            case 2:
+                return [3 /*break*/, 7];
+            case 1:
                 if (!(req.query.width === undefined &&
-                    req.query.height === undefined)) return [3 /*break*/, 3];
+                    req.query.height === undefined)) return [3 /*break*/, 2];
                 res.sendFile(path_1.default.resolve("assets/images/".concat(fileName, ".jpg")));
-                return [3 /*break*/, 6];
-            case 3:
-                if (!(isNaN(width) || isNaN(height))) return [3 /*break*/, 4];
+                return [3 /*break*/, 7];
+            case 2:
+                if (!(isNaN(width) || isNaN(height))) return [3 /*break*/, 3];
                 res.send('Please, Enter a valid number for width and height');
+                return [3 /*break*/, 7];
+            case 3:
+                if (!(0, file_checker_1.default)(thumbFileName, 'thumb')) return [3 /*break*/, 4];
+                thumbFilePath = path_1.default.resolve("assets/thumb/".concat(thumbFileName));
                 return [3 /*break*/, 6];
-            case 4: return [4 /*yield*/, (0, file_checker_1.default)(thumbfileName, 'thumb')];
+            case 4: return [4 /*yield*/, (0, sharp_1.default)(fileName, width, height)];
             case 5:
-                // check if the image resized before and exist on thumb dir
-                if (_a.sent()) {
-                    // show image on the browser as this size already exist
-                    res.sendFile(path_1.default.resolve("assets/thumb/".concat(fileName, "_").concat(width, "x").concat(height, ".jpg")));
-                    // if this size doesn't exist then resize it
-                }
-                else {
-                    (0, sharp_1.default)(fileName, width, height, res);
-                }
+                thumbFilePath = _a.sent();
+                thumbFilePath = path_1.default.resolve(thumbFilePath);
                 _a.label = 6;
-            case 6: return [3 /*break*/, 8];
-            case 7:
+            case 6:
+                // show image on the browser
+                res.sendFile(thumbFilePath);
+                _a.label = 7;
+            case 7: return [3 /*break*/, 9];
+            case 8:
                 err_1 = _a.sent();
                 console.error(err_1);
-                return [3 /*break*/, 8];
-            case 8: return [2 /*return*/];
+                return [3 /*break*/, 9];
+            case 9: return [2 /*return*/];
         }
     });
 }); });

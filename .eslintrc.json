@@ -27,10 +27,10 @@
         // ],
         // "semi": ["error", "always"],
         // "quotes": ["error", "double"]
-        "prettier/prettier": 2
+        "prettier/prettier": 2,
+        "@typescript-eslint/explicit-function-return-type": ["error"]
     },
     "ignorePatterns": [
-        "src/**/*.test.ts",
-        "src/frontend/generated/*"
+        "src/tests"
     ]
 }

@@ -12,7 +12,7 @@ const port = 3000;
 app.use('/api', routes);
 
 // listen to the server
-app.listen(port, () => {
+app.listen(port, (): void => {
   console.log(`server started at localhost:${port}`);
 });
 

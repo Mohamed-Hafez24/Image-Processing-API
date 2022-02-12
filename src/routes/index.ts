@@ -5,7 +5,7 @@ import images from './api/images';
 const routes = express.Router();
 
 // set the root endpoint
-routes.get('/', (req, res) => {
+routes.get('/', (req: express.Request, res: express.Response): void => {
   res.send('Welcome to Image processing API');
 });
 
